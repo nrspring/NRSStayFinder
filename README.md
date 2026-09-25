@@ -101,6 +101,26 @@ python StayFinderSearch.py
 
 This is the same search engine the desktop app drives, useful for quick tweaks or scripting.
 
+## Turning a report into a slide deck
+
+Every search writes a self-contained Markdown report (ranked picks, prices, ratings, pros/cons, photo links)
+to the `reports/` folder, and you can export or copy it straight from the Results page. Because it's plain
+Markdown with real data already baked in, it's an easy drop-in for an LLM that can generate slides or
+documents — no reformatting needed.
+
+Export the report (or hit **Copy Markdown**), then paste it into your LLM of choice (Claude, ChatGPT, etc.)
+along with a prompt like:
+
+> Attached is a Markdown report of Airbnb listings for a trip. Turn it into a short slide deck for the group
+> chat: one title slide with the trip dates and guest count, then one slide per top pick with its name, price
+> per night and total, rating, a couple of standout pros, and its photo/link, and a final "runners-up" slide
+> summarizing the "more matches" section in a table. Keep it visual and skimmable — this is for a group of
+> friends deciding where to stay, not a business report.
+
+Since the report already has verified names, prices, and links (nothing invented by the model), the deck the
+LLM produces stays accurate to what's actually on Airbnb — you're just asking it to reformat and design, not
+research.
+
 ## Notes
 
 - Airbnb has no public API — `pyairbnb` talks to the same endpoints the website uses, so it can break if
