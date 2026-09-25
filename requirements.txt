@@ -1,0 +1,3 @@
+ollama
+pyairbnb
+pyside6-essentials
