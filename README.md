@@ -36,8 +36,47 @@ public site and OpenStreetMap for geocoding.
 
 - Windows (uses `PySide6`, `os.startfile`, and Windows light/dark theme detection)
 - Python 3.11+
-- [Ollama](https://ollama.com) installed and running locally, with at least one tool-capable model pulled
-  (e.g. `ollama pull qwen3:8b` or `ollama pull gpt-oss:20b`)
+- [Ollama](https://ollama.com) installed and running locally (see below)
+- At least one tool-capable local model pulled through Ollama
+
+### Minimum hardware
+
+Everything runs on your own machine — no cloud, no GPU rental — but the model needs somewhere to live:
+
+| | Minimum | Recommended |
+|---|---|---|
+| RAM | 16 GB | 32 GB+ |
+| GPU | Not required (CPU works, just slower) | 8 GB+ VRAM for smooth, fast responses |
+| Disk | ~5 GB free for a small model | 15–20 GB+ if you want a larger, sharper-ranking model |
+
+Smaller models (e.g. `qwen3:8b`, ~5 GB) run fine on a modest laptop with no dedicated GPU, just slower per
+step. Larger models (e.g. `qwen3.8:27b`, ~18 GB, or `gpt-oss:20b`, ~13 GB) rank and write noticeably better but
+want a GPU with enough VRAM to hold them — otherwise Ollama spills to CPU/RAM and each step gets much slower.
+
+### 1. Install Ollama
+
+Download and install Ollama for your platform from **[ollama.com/download](https://ollama.com/download)**,
+then launch it (it runs quietly in the background/tray and exposes a local API — you don't need to interact
+with it directly).
+
+### 2. Pull a model
+
+Any model that supports **tool calling** works. From a terminal:
+
+```bash
+ollama pull qwen3:8b
+```
+
+That's a good default for most machines. If you have a beefier GPU and want better results, try:
+
+```bash
+ollama pull gpt-oss:20b
+```
+
+You can pull more than one and switch between them from the **Model** dropdown in the app's sidebar — Stay
+Finder automatically lists every tool-capable model you've pulled.
+
+### 3. Install Python dependencies
 
 ```bash
 pip install -r requirements.txt
